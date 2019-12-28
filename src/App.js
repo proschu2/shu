@@ -6,16 +6,16 @@ import "./App.css";
 class App extends React.Component {
   constructor() {
     super();
-    this.secs = new Date().getSeconds()
+    this.initialNumber = Math.floor(Math.random() * words.length)
     this.state = {
-      word: words[this.secs].word,
-      language: words[this.secs].language,
-      meaning: words[this.secs].meaning,
+      word: words[this.initialNumber].word,
+      language: words[this.initialNumber].language,
+      meaning: words[this.initialNumber].meaning,
     };
   }
   randomWord() {
     const randomNumber = Math.floor(Math.random() * words.length);
-    return words[randomNumber];
+    return words[randomNumber].word !== this.state.word ? words[randomNumber] : this.randomWord();
     
   }
   shuffleWords(array){
@@ -32,6 +32,13 @@ class App extends React.Component {
     this.shuffleWords(words)
   };
 
+  handleEnter = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      this.handleClick();
+    }
+  }
+
   randomColor() {
     const color = `rgb(
       ${Math.floor(Math.random() * 155)},
@@ -46,6 +53,7 @@ class App extends React.Component {
         <SpecialWord
           displayColor={this.randomColor}
           handleClick={this.handleClick}
+          handleEnter={this.handleEnter}
           {...this.state}
         />
         <p id="dedication">per la mia pupina bella<span aria-hidden="true" role="img">🦔</span></p>

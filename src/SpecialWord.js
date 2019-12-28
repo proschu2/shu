@@ -5,6 +5,7 @@ class SpecialWord extends React.Component {
     const randomColor = this.props.displayColor();
     const html = document.documentElement;
     html.style.backgroundColor = randomColor;
+    document.addEventListener('keydown',this.props.handleEnter)
 
     return (
       <div style={{ backgroundColor: "white" }} className="wordbox">
