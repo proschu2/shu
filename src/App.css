@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+/*
+body {
+  padding-top: 10%;
+  display: block;
+margin: auto;
+  max-width: 80%;
+}
+*/
+body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+html {
+  transition: background-color 1s;
+}
+
+
+.wordbox {
+  height: auto;
+  width: 100%;
+  border: 1px rgb(145, 126, 126) solid;
+  border-radius: 10px;
+  text-align: right;
+  
+  
+}
+
+#language {
+  margin: 30px;
+  text-align: left;
+  font-family: 'Anonymous Pro', bold;
+}
+
+#word {
+  margin: 30px;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+}
+
+.fadeIn {
+  opacity: 0;
+  display: block;
+  animation: slidein 1s ease-out forwards;
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+#meaning {
+  margin: 30px;
+  font-family: 'Anonymous Pro', italic;
+}
+
+#newword {
+  margin: 30px;
+  position: relative;
+  border-radius: 5px;
+  height: 35px;
+  width: 100px;
+  font-weight: 700;
+  font-family: 'Anonymous Pro', monospace;
+  color: white;
+}
+
+#dedication {
+  text-align: center;
+  color: white;
+  font-family: 'Anonymous Pro', sans-serif;
+}
