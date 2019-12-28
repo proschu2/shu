@@ -33,7 +33,7 @@ class App extends React.Component {
   };
 
   handleEnter = (event) => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 || event.keyCode === 32) {
       event.preventDefault();
       this.handleClick();
     }
