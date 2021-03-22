@@ -56,7 +56,7 @@ class App extends React.Component {
           handleEnter={this.handleEnter}
           {...this.state}
         />
-        <p id="dedication">per la mia pupina bella<span aria-hidden="true" role="img">🦔</span></p>
+        {/*<p id="dedication">per la mia pupina bella<span aria-hidden="true" role="img">🦔</span></p>*/}
       </div>
     );
   }
