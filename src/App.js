@@ -1,12 +1,12 @@
 import React from "react";
 import SpecialWord from "./SpecialWord";
-import words from './WordsDatabase'
+import words from "./WordsDatabaseEN";
 import "./App.css";
 
 class App extends React.Component {
   constructor() {
     super();
-    this.initialNumber = Math.floor(Math.random() * words.length)
+    this.initialNumber = Math.floor(Math.random() * words.length);
     this.state = {
       word: words[this.initialNumber].word,
       language: words[this.initialNumber].language,
@@ -15,11 +15,12 @@ class App extends React.Component {
   }
   randomWord() {
     const randomNumber = Math.floor(Math.random() * words.length);
-    return words[randomNumber].word !== this.state.word ? words[randomNumber] : this.randomWord();
-    
+    return words[randomNumber].word !== this.state.word
+      ? words[randomNumber]
+      : this.randomWord();
   }
-  shuffleWords(array){
-    return array.sort(()=>Math.random()-0.5)
+  shuffleWords(array) {
+    return array.sort(() => Math.random() - 0.5);
   }
 
   handleClick = () => {
@@ -27,9 +28,9 @@ class App extends React.Component {
     this.setState({
       word: generateRandomWord.word,
       language: generateRandomWord.language,
-      meaning: generateRandomWord.meaning
+      meaning: generateRandomWord.meaning,
     });
-    this.shuffleWords(words)
+    this.shuffleWords(words);
   };
 
   handleEnter = (event) => {
@@ -37,7 +38,7 @@ class App extends React.Component {
       event.preventDefault();
       this.handleClick();
     }
-  }
+  };
 
   randomColor() {
     const color = `rgb(
@@ -46,7 +47,7 @@ class App extends React.Component {
       ${Math.floor(Math.random() * 155)})`;
     return color;
   }
-  
+
   render() {
     return (
       <div>
