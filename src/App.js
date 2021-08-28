@@ -1,17 +1,21 @@
 import React from "react";
 import SpecialWord from "./SpecialWord";
-import words from "./WordsDatabaseEN";
+import detectBrowserLanguage from "detect-browser-language";
 import "./App.css";
+import words from "./words";
 
 class App extends React.Component {
   constructor() {
     super();
     this.initialNumber = Math.floor(Math.random() * words.length);
+    const siteLang = detectBrowserLanguage().includes("it") ? "IT" : "EN";
     this.state = {
+      siteLang,
       word: words[this.initialNumber].word,
-      language: words[this.initialNumber].language,
-      meaning: words[this.initialNumber].meaning,
+      language: words[this.initialNumber][`language${siteLang}`],
+      meaning: words[this.initialNumber][`meaning${siteLang}`],
     };
+    console.log(this.state);
   }
   randomWord() {
     const randomNumber = Math.floor(Math.random() * words.length);
@@ -27,8 +31,8 @@ class App extends React.Component {
     const generateRandomWord = this.randomWord();
     this.setState({
       word: generateRandomWord.word,
-      language: generateRandomWord.language,
-      meaning: generateRandomWord.meaning,
+      language: generateRandomWord[`language${this.state.siteLang}`],
+      meaning: generateRandomWord[`meaning${this.state.siteLang}`],
     });
     this.shuffleWords(words);
   };
