@@ -5,7 +5,7 @@ class SpecialWord extends React.Component {
     const randomColor = this.props.displayColor();
     const html = document.documentElement;
     html.style.backgroundColor = randomColor;
-    document.addEventListener('keydown',this.props.handleEnter)
+    document.addEventListener("keydown", this.props.handleEnter);
 
     return (
       <div style={{ backgroundColor: "white" }} className="wordbox">
@@ -16,17 +16,14 @@ class SpecialWord extends React.Component {
         >
           <h1 id="word">{this.props.word}</h1>
           <h3 id="language">{this.props.language}</h3>
-          <h5 id="meaning">
-            {this.props.meaning}
-          </h5>
-        
-        <button
-          style={{ backgroundColor: randomColor }}
-          id="newword"
-          onClick={this.props.handleClick}
-        >
-          Genera
-        </button>
+          <h5 id="meaning">{this.props.meaning}</h5>
+          <button
+            style={{ backgroundColor: randomColor }}
+            id="newword"
+            onClick={this.props.handleClick}
+          >
+            {this.props.siteLang === "EN" ? "Generate" : "Genera"}
+          </button>
         </div>
       </div>
     );

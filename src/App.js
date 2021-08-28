@@ -1,5 +1,6 @@
 import React from "react";
 import SpecialWord from "./SpecialWord";
+import LanguageSwitcher from "./LanguageSwitcher";
 import detectBrowserLanguage from "detect-browser-language";
 import "./App.css";
 import words from "./words";
@@ -15,7 +16,6 @@ class App extends React.Component {
       language: words[this.initialNumber][`language${siteLang}`],
       meaning: words[this.initialNumber][`meaning${siteLang}`],
     };
-    console.log(this.state);
   }
   randomWord() {
     const randomNumber = Math.floor(Math.random() * words.length);
@@ -27,12 +27,12 @@ class App extends React.Component {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  handleClick = () => {
+  handleClick = (lang) => {
     const generateRandomWord = this.randomWord();
     this.setState({
       word: generateRandomWord.word,
-      language: generateRandomWord[`language${this.state.siteLang}`],
-      meaning: generateRandomWord[`meaning${this.state.siteLang}`],
+      language: generateRandomWord[`language${lang ?? this.state.siteLang}`],
+      meaning: generateRandomWord[`meaning${lang ?? this.state.siteLang}`],
     });
     this.shuffleWords(words);
   };
@@ -44,24 +44,35 @@ class App extends React.Component {
     }
   };
 
+  handleChangeLanguage = () => {
+    const newLang = this.state.siteLang === "EN" ? "IT" : "EN";
+    this.setState({
+      siteLang: newLang,
+    });
+    setTimeout(this.handleClick(newLang), 500);
+  };
+
   randomColor() {
     const color = `rgb(
-      ${Math.floor(Math.random() * 155)},
-      ${Math.floor(Math.random() * 155)},
-      ${Math.floor(Math.random() * 155)})`;
+      ${Math.floor(Math.random() * 175)},
+      ${Math.floor(Math.random() * 175)},
+      ${Math.floor(Math.random() * 175)})`;
     return color;
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <LanguageSwitcher
+          handleChangeLanguage={this.handleChangeLanguage}
+          siteLang={this.state.siteLang}
+        />
         <SpecialWord
           displayColor={this.randomColor}
           handleClick={this.handleClick}
           handleEnter={this.handleEnter}
           {...this.state}
         />
-        {/*<p id="dedication">per la mia pupina bella<span aria-hidden="true" role="img">🦔</span></p>*/}
       </div>
     );
   }
