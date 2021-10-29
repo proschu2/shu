@@ -27,12 +27,12 @@ class App extends React.Component {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  handleClick = (lang) => {
+  handleClick = (lang, newLang=null) => {
     const generateRandomWord = this.randomWord();
     this.setState({
       word: generateRandomWord.word,
-      language: generateRandomWord[`language${lang ?? this.state.siteLang}`],
-      meaning: generateRandomWord[`meaning${lang ?? this.state.siteLang}`],
+      language: generateRandomWord[`language${newLang ?? this.state.siteLang}`],
+      meaning: generateRandomWord[`meaning${newLang ?? this.state.siteLang}`],
     });
     this.shuffleWords(words);
   };
@@ -46,10 +46,14 @@ class App extends React.Component {
 
   handleChangeLanguage = () => {
     const newLang = this.state.siteLang === "EN" ? "IT" : "EN";
+    const generateRandomWord = this.randomWord();
     this.setState({
       siteLang: newLang,
+      word: generateRandomWord.word,
+      language: generateRandomWord[`language${newLang}`],
+      meaning: generateRandomWord[`meaning${newLang}`],
     });
-    setTimeout(this.handleClick(newLang), 500);
+    setTimeout(this.handleClick('',newLang), 500);
   };
 
   randomColor() {
